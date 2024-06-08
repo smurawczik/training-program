@@ -5,5 +5,6 @@ export default defineConfig({
 	schema: './src/lib/server/schema.ts',
 	dbCredentials: {
 		url: 'training.db'
-	}
+	},
+	out: 'drizzle'
 });
