@@ -40,6 +40,7 @@
 					<input
 						type="number"
 						name="km_run"
+						step="0.5"
 						class="p-1 border-blue-600 border-2 rounded-md"
 						bind:value={kmRun}
 					/>

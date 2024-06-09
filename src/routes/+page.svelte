@@ -3,6 +3,8 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+
+	export let user = data.users[0];
 </script>
 
 <svelte:head>
@@ -10,15 +12,20 @@
 	<meta name="description" content={'Running records per user'} />
 </svelte:head>
 
-{#each data.users as user}
-	{user.firstName}
-	{user.lastName}
-	{#each user.runRecords as record}
-		<span>running record {user.id}-{record.id}:</span>
-		<pre>
-		{JSON.stringify(record, null, 2)}
-	</pre>
-	{/each}
-{/each}
-
-<BarChart />
+<BarChart
+	chartData={{
+		labels: Array.from({ length: user.runRecords.length ?? 0 }).fill('(km) - (minutes)'),
+		datasets: [
+			{
+				label: '(n)km in (min)time',
+				backgroundColor: 'rgb(255, 99, 132)',
+				borderColor: 'rgb(255, 99, 132)',
+				data: (user ?? { runRecords: [] }).runRecords.map((runRecord) => ({
+					x: parseFloat(runRecord.kmRun ?? '0'),
+					y: parseFloat(runRecord.timeTaken ?? '0'),
+					r: 5
+				}))
+			}
+		]
+	}}
+/>
