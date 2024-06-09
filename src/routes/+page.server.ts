@@ -5,7 +5,8 @@ import type { PageServerLoad } from './$types.js';
 export const load: PageServerLoad = async () => {
 	const users = await db.query.users.findMany({
 		with: {
-			runRecord: true
+			runRecords: true,
+			excerciseRecords: true
 		}
 	});
 	return { users };

@@ -9,8 +9,8 @@ export const users = sqliteTable('users', {
 });
 
 export const usersRelations = relations(users, ({ many }) => ({
-	runRecord: many(runRecord),
-	excercisesRecord: many(excerciseRecord)
+	runRecords: many(runRecord),
+	excerciseRecords: many(excerciseRecord)
 }));
 
 export const runRecord = sqliteTable('runRecord', {
@@ -30,19 +30,34 @@ export const runRecordRelations = relations(runRecord, ({ one }) => ({
 	})
 }));
 
+export const excercises = sqliteTable('excercises', {
+	id: integer('id').primaryKey({ autoIncrement: true }),
+	name: text('name').notNull()
+});
+
 export const excerciseRecord = sqliteTable('excerciseRecord', {
 	id: integer('id').primaryKey({ autoIncrement: true }),
 	userId: integer('user_id')
 		.references(() => users.id, { onDelete: 'cascade' })
 		.notNull(),
-	name: integer('excercise_name').notNull(),
+	excerciseId: integer('excercise_id')
+		.references(() => excercises.id, { onDelete: 'cascade' })
+		.notNull(),
 	repetitions: text('repetitions').notNull(),
 	date: text('date').$defaultFn(() => new Date().toISOString())
 });
+
+export const excercisesRelations = relations(excercises, ({ many }) => ({
+	excerciseRecords: many(excerciseRecord)
+}));
 
 export const excerciseRecordRelations = relations(excerciseRecord, ({ one }) => ({
 	user: one(users, {
 		fields: [excerciseRecord.userId],
 		references: [users.id]
+	}),
+	excercise: one(excercises, {
+		fields: [excerciseRecord.excerciseId],
+		references: [excercises.id]
 	})
 }));

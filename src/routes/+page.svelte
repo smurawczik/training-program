@@ -13,7 +13,7 @@
 {#each data.users as user}
 	{user.firstName}
 	{user.lastName}
-	{#each user.runRecord as record}
+	{#each user.runRecords as record}
 		<span>running record {user.id}-{record.id}:</span>
 		<pre>
 		{JSON.stringify(record, null, 2)}

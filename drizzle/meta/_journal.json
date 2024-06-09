@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1717835569143,
-      "tag": "0000_overconfident_amphibian",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1717925364542,
-      "tag": "0001_low_tana_nile",
+      "when": 1717940754842,
+      "tag": "0000_tiny_swordsman",
       "breakpoints": true
     }
   ]

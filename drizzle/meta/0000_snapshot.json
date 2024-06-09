@@ -1,9 +1,103 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "4d78a40c-4e05-4c16-ac41-4aeb18dbd735",
+  "id": "e4c2404a-9825-4ea4-8e63-21cc368540f7",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
+    "excerciseRecord": {
+      "name": "excerciseRecord",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "excercise_id": {
+          "name": "excercise_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "repetitions": {
+          "name": "repetitions",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "date": {
+          "name": "date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "excerciseRecord_user_id_users_id_fk": {
+          "name": "excerciseRecord_user_id_users_id_fk",
+          "tableFrom": "excerciseRecord",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "excerciseRecord_excercise_id_excercises_id_fk": {
+          "name": "excerciseRecord_excercise_id_excercises_id_fk",
+          "tableFrom": "excerciseRecord",
+          "tableTo": "excercises",
+          "columnsFrom": [
+            "excercise_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "excercises": {
+      "name": "excercises",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
     "runRecord": {
       "name": "runRecord",
       "columns": {
@@ -18,7 +112,7 @@
           "name": "user_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         },
         "km_run": {
@@ -55,7 +149,7 @@
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
+          "onDelete": "cascade",
           "onUpdate": "no action"
         }
       },
