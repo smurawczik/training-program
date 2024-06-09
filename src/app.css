@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*:focus-visible {
+    /* remove default focus style */
+    outline: none;
+    /* custom focus styles */
+    box-shadow: 0 0 0 2px dodgerblue;
+    color: theme("colors.blue.500");
+}
